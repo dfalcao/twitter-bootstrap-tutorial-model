@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Twitter Bootstrap Popover Example</title>
+<meta name="description" content="Creating Modal Window with Twitter Bootstrap">
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<h2>https://github.com/guillemhs/twitter-bootstrap-tutorial</h2>
+<div class="well">
+<a href="#" id="example2" class="btn btn-danger" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+</div>
+
+
+<div class="container">
+<h2>Example of creating Popover with Twitter Bootstrap with trigger options</h2>
+<div class="well">
+<a href="#" id="example1" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+</div>
+
+
+
+
+<div class="container">
+<h2>Example of creating Popover with Twitter Bootstrap with placement option</h2>
+<div class="well">
+<a href="#" id="example" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltip for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+<div class="well">
+<a href="#" id="example_left" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+<div class="well">
+<a href="#" id="example_top" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+<div class="well">
+<a href="#" id="example_bottom" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>
+</div>
+</div>
+
+
+
+
+<div class="container">
+<h2>Example of creating Popover with Twitter Bootstrap with title and content options</h2>
+<div class="well">
+<a href="#" id="example4" class="btn btn-success" rel="popover">hover for popover</a>
+</div>
+</div>
+
+
+<hr>
+<hr>
+
+<div class="container">
+      <h1>Image Content Popovers</h1>
+      <a class="btn" rel="popover4" data-img="http://placehold.it/600x400">Image 1</a>
+      <a class="btn" rel="popover4" data-img="http://placehold.it/300x200">Image 2</a>
+      <a class="btn" rel="popover4" data-img="http://placehold.it/100x50">Image 3</a>
+      <a class="btn" rel="popover4" data-img="http://placehold.it/60x40">Image 4</a>
+</div> <!-- /container -->
+<hr>
+<hr>
+<hr>
+<hr>
+
+
+<div class="container">
+  <!-- Link que receberá o evento do popover ao ser clicado.-->
+<a href="#" id="a-popover" class="btn btn-success">Abrir popover</a>
+<!-- Div oculta que será exibida dentro do popover. -->
+<div id="div-popover" class="hide">
+   Conteúdo do popover.
+   <br />
+   <br />
+   <!-- Botão dentro do popover responsável por abrir o modal. -->
+   <button id="btn-modal" class="btn btn-primary">Abrir modal</button>
+   <!-- Botão dentro do popover responsável por fechar o popover. -->
+   <button id="btn-fechar" class="btn btn-danger" data-dismiss="clickover">Fechar</button>
+</div>
+<!-- Div oculta utilizada para montar o modal. -->
+<div class="modal hide" id="div-modal">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Título modal</h3>
+   </div>
+   <div class="modal-body">
+      Conteúdo do modal.
+   </div>
+   <div class="modal-footer">
+     <!-- Botão dentro do modal responsável por fechar o modal. -->
+     <button class="btn" data-dismiss="modal">Fechar modal</button>
+   </div>
+</div>
+
+</div>
+<hr>
+<hr>
+<hr>
+<hr>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+<script>
+$(function ()
+{ $("#example2").popover();
+});
+
+$(function ()
+{ $("#example1").popover({trigger: 'focus'});
+});
+
+
+
+$(function ()
+{ $("#example").popover();
+  $("#example_left").popover({placement:'left'});
+  $("#example_top").popover({placement:'top'});
+  $("#example_bottom").popover({placement:'bottom'});
+});
+
+
+$(function ()
+{ $("#example4").popover({title: 'Twitter Bootstrap Popover', content: "It's so simple to create a tooltop for my website!"});
+});
+
+
+
+
+
+
+
+$('a[rel=popover4]').popover({
+  html: true,
+  trigger: 'hover',
+  placement: 'bottom',
+  content: function(){return '<img src="'+$(this).data('img') + '" />';}
+});
+
+
+
+
+
+
+
+
+
+ $(document).ready(function () {
+      // Associa o evento do popover ao clicar no link.
+      $('#a-popover').popover({
+         trigger: 'manual',
+         html: true,
+         title: 'Título popover',
+         content: $('#div-popover').html() // Adiciona o conteúdo da div oculta para dentro do popover.
+      }).click(function (e) {
+         e.preventDefault();
+         // Exibe o popover.
+         $(this).popover('show');
+      });
+ 
+      $('#btn-fechar').live('click', function (e) {
+         // Oculta o popover ao clicar no botão fechar.
+         $('#a-popover').popover('hide');
+      });
+ 
+      $('#btn-modal').live('click', function (e) {
+         // Oculta o popover ao clicar no botão abrir modal.
+         $('#a-popover').popover('hide');
+         // Abre o modal.
+         $('#div-modal').modal();
+      });
+   });
+</script>
+</body>
+</html>
